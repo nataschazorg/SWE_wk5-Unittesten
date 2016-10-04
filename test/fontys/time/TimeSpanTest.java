@@ -155,7 +155,7 @@ public class TimeSpanTest {
         assertEquals(expResult, result);
         
         // Test exceptions
-        endTime = new Time(2016,10,4,21,45);
+        endTime = new Time(2016,10,4,18,45);
         try {
             instance.setEndTime(endTime);
             fail("Moet exception geven");
@@ -170,11 +170,23 @@ public class TimeSpanTest {
     @Test
     public void testMove() {
         System.out.println("move");
-        int minutes = 0;
-        TimeSpan instance = null;
+        
+        // Begin time aanmaken
+        ITime BT = new Time(2016, 10, 4, 20, 14);
+        // Eind tijd aanmakens
+        ITime ET = new Time(2016, 10, 4, 20, 30);
+        // Nieuwe instance maken
+        TimeSpan instance = new TimeSpan(BT, ET);
+        
+        int minutes = 10;
+        // Nieuwe begin/eindtijd maken om deze te vergelijken
+        ITime newBT = new Time(2016, 10, 4, 20, 24);
+        ITime newET = new Time(2016, 10, 4, 20, 40);    
         instance.move(minutes);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Controle of de resultaten gelijk zijn
+        assertEquals(newBT, instance.getBeginTime());
+        assertEquals(newET, instance.getEndTime());
     }
 
     /**
@@ -191,15 +203,24 @@ public class TimeSpanTest {
         // Nieuwe instance maken
         TimeSpan instance = new TimeSpan(BT, ET);
         
+        // De lengte 10 minuten vergrooten dus de eindtijd verzetten
         int minutes = 10;
         // Nieuwe begin/eindtijd maken om deze te vergelijken
-        ITime newBT = new Time(2016, 10, 4, 20, 24);
         ITime newET = new Time(2016, 10, 4, 20, 40);    
         instance.changeLengthWith(minutes);
         
         // Controle of de resultaten gelijk zijn
-        assertEquals(newBT, instance.getBeginTime());
+        assertEquals(BT, instance.getBeginTime());
         assertEquals(newET, instance.getEndTime());
+        
+        // De exception afhandelen
+        minutes = -10;
+        try {
+            instance.changeLengthWith(minutes);
+            fail("Moet exception geven");
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        }
     }
 
     /**

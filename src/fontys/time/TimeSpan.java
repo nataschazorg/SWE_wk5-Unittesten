@@ -98,7 +98,7 @@ public class TimeSpan implements ITimeSpan {
     @Override
     public void move(int minutes) {
         bt = bt.plus(minutes);
-        et = bt.plus(minutes);
+        et = et.plus(minutes);
     }
     
     /*
