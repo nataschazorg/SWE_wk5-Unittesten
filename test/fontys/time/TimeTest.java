@@ -247,13 +247,36 @@ public class TimeTest {
     @Test
     public void testDifference() {
         System.out.println("difference");
-        ITime time = null;
-        Time instance = null;
-        int expResult = 0;
-        int result = instance.difference(time);
+        
+        // Test subtract 1 minute
+        ITime time2 = new Time(2016, 2, 4, 12, 29);
+        int expResult = 1;
+        int result = time.difference(time2);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Test subtract 1 minute reverse
+        time2 = new Time(2016, 2, 4, 12, 31);
+        expResult = -1;
+        result = time.difference(time2);
+        assertEquals(expResult, result);
+        
+        // Test difference = 0
+        time2 = new Time(2016, 2, 4, 12, 30);
+        expResult = 0;
+        result = time.difference(time2);
+        assertEquals(expResult, result);
+        
+        // Test time difference 1 hour
+        time2 = new Time(2016, 2, 4, 11, 30);
+        expResult = 60;
+        result = time.difference(time2);
+        assertEquals(expResult, result);
+
+        // Test time difference 1 day
+        time2 = new Time(2016, 2, 3, 12, 30);
+        expResult = 1440;
+        result = time.difference(time2);
+        assertEquals(expResult, result);
     }
     
 }
