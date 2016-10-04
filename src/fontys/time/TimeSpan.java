@@ -88,7 +88,7 @@ public class TimeSpan implements ITimeSpan {
                     + et + " must be later then begin time " + bt);
         }
 
-        bt = endTime;
+        et = endTime;
     }
 
     /*

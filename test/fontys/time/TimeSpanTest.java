@@ -113,9 +113,10 @@ public class TimeSpanTest {
         TimeSpan instance = new TimeSpan(BT, ET);
         
         ITime beginTime = new Time(2016,10,4,20,10);
+        ITime beginTime2 = new Time(2016,10,4,20,10);
         // BT moet gelijk zijn aan de teruggegeven begintijd
         ITime expResult = beginTime;
-        instance.setBeginTime(beginTime);
+        instance.setBeginTime(beginTime2);
         ITime result = instance.getBeginTime();
         
         assertEquals(expResult, result);
@@ -144,10 +145,11 @@ public class TimeSpanTest {
         // Nieuwe instance maken
         TimeSpan instance = new TimeSpan(BT, ET);
         
-        ITime endTime = new Time(2016,10,4,20,30);
+        ITime endTime = new Time(2016,10,4,21,30);
+        ITime endTime2 = new Time(2016,10,4,21,30);
         // BT moet gelijk zijn aan de teruggegeven begintijd
         ITime expResult = endTime;
-//        instance.setEndTime(endTime);
+        instance.setEndTime(endTime2);
         ITime result = instance.getEndTime();
         
         assertEquals(expResult, result);
@@ -181,11 +183,23 @@ public class TimeSpanTest {
     @Test
     public void testChangeLengthWith() {
         System.out.println("changeLengthWith");
-        int minutes = 0;
-        TimeSpan instance = null;
+        
+        // Begin time aanmaken
+        ITime BT = new Time(2016, 10, 4, 20, 14);
+        // Eind tijd aanmakens
+        ITime ET = new Time(2016, 10, 4, 20, 30);
+        // Nieuwe instance maken
+        TimeSpan instance = new TimeSpan(BT, ET);
+        
+        int minutes = 10;
+        // Nieuwe begin/eindtijd maken om deze te vergelijken
+        ITime newBT = new Time(2016, 10, 4, 20, 24);
+        ITime newET = new Time(2016, 10, 4, 20, 40);    
         instance.changeLengthWith(minutes);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Controle of de resultaten gelijk zijn
+        assertEquals(newBT, instance.getBeginTime());
+        assertEquals(newET, instance.getEndTime());
     }
 
     /**
