@@ -22,14 +22,14 @@ public class Time implements ITime {
      * creation of a time-object with year y, month m, day d, hours h and
      * minutes m; if the combination of y-m-d refers to a non-existing date 
      * the value of this Time-object will be not guaranteed 
-     * @param y 1900≤m≤3000
+     * @param y 1900≤m≤2100
      * @param m 1≤m≤12
      * @param d 1≤d≤31
      * @param h 0≤h≤23
      * @param min 0≤m≤59
      */
     public Time(int y, int m, int d, int h, int min) {
-        if (y < 1900 || y > 3000){
+        if (y < 1900 || y > 2100){
             throw new IllegalArgumentException("Year must be within 1900..3000");
         }
         if (m < 1 || m > 12) {
@@ -43,7 +43,7 @@ public class Time implements ITime {
         if (h < 0 || h > 23) {
             throw new IllegalArgumentException("hours must be within 0..23");
         }
-        if (m < 0 || m > 59) {
+        if (min < 0 || min > 59) {
             throw new IllegalArgumentException("minutes must be within 0..59");
         }
         

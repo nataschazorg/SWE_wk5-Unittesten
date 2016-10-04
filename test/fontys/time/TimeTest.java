@@ -40,11 +40,101 @@ public class TimeTest {
     }
     
     /**
-     * Test 
+     * Test all the situations where the constructor
+     * should not raise an exception
      */
-    @Test(expected = IllegalAccessException.class)
+    @Test
     public void testConstructtor(){
-        fail("The test case is a prototype.");
+        // Test year == 1900
+        
+        // Test year == 2100
+        
+        // Test month == 1
+        
+        // Test month == 12
+        
+        // Test day == 1
+        
+        // Test hour == 0
+        
+        // Test hour == 23
+        
+        // Test minute == 0
+        
+        // Test minute == 59
+        
+    }
+    
+    
+    /**
+     * Test all all the situations 
+     * where the constructor should raise an exception
+     */
+    @Test
+    public void testConstructtorExceptions(){
+        // Test year < 1900
+        try {
+            time = new Time(1889, 1, 1, 1, 1);
+            fail("There should be an IllegalArgumentException when year < 1900");
+        } catch (IllegalArgumentException e) {
+        }
+        
+        // Test year > 2100
+        try {
+            time = new Time(2101, 1, 1, 1, 1);
+            fail("There should be an IllegalArgumentException when year > 2100");
+        } catch (IllegalArgumentException e) {
+        }
+        
+        // Test month < 1
+        try {
+            time = new Time(2016, 0, 1, 1, 1);
+            fail("There should be an IllegalArgumentException when month < 1");
+        } catch (Exception e) {
+        }
+        
+        // Test month > 12
+        try {
+            time = new Time(2016, 13, 1, 1, 1);
+            fail("There should be an IllegalArgumentException when month > 12");
+        } catch (IllegalArgumentException e) {
+        }
+        
+        // Test day < 1
+        try {
+            time = new Time(2016, 2, 0, 1, 1);
+            fail("There should be an IllegalArgumentException when day < 1");
+        } catch (Exception e) {
+        }
+        
+        // Test hour < 0
+        try {
+            time = new Time(2016, 2, 1, -1, 1);
+            fail("There should be an IllegalArgumentException when hour < 0");
+        } catch (Exception e) {
+        }        
+        
+        // Test hour > 23
+        try {
+            time = new Time(2016, 2, 1, 24, 1);
+            fail("There should be an IllegalArgumentException when hour > 23");
+        } catch (Exception e) {
+        }
+        
+        // Test minute < 0
+        try {
+            time = new Time(2016, 2, 1, 1, -1);
+            fail("There should be an IllegalArgumentException when minute < 0");
+        } catch (Exception e) {
+        }
+        
+        // Test minute > 59
+        try {
+            time = new Time(2016, 2, 0, 1, 60);
+            fail("There should be an IllegalArgumentException when minute > 59");
+        } catch (Exception e) {
+        }
+        
     }
     
     /**
