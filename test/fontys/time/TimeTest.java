@@ -43,7 +43,9 @@ public class TimeTest {
      * Test 
      */
     @Test(expected = IllegalAccessException.class)
-    public void
+    public void testConstructtor(){
+        fail("The test case is a prototype.");
+    }
     
     /**
      * Test of getLastDayOfMonth method, of class Time.
