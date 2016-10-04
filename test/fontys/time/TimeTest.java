@@ -219,11 +219,30 @@ public class TimeTest {
      */
     @Test
     public void testPlus() {
+        // Add one minute
         System.out.println("plus");
         int minutes = 1;
         ITime expResult = new Time(2016, 2, 4, 12, 31);
         ITime result = time.plus(minutes);
-        assertEquals(expResult, result);
+        assertEquals(expResult.getMinutes(), result.getMinutes());
+        
+        // Add -1 minute
+        minutes = -1;
+        expResult = new Time(2016, 2, 4, 12, 29);
+        result = time.plus(minutes);
+        assertEquals(expResult.getMinutes(), result.getMinutes());
+        
+        // Add 0
+        minutes = 0;
+        expResult = new Time(2016, 2, 4, 12, 30);
+        result = time.plus(minutes);
+        assertEquals(expResult.getMinutes(), result.getMinutes());
+        
+        // Add 1 hour
+        minutes = 60;
+        expResult = new Time(2016, 2, 4, 13, 30);
+        result = time.plus(minutes);
+        assertEquals(expResult.getMinutes(), result.getMinutes());        
     }
 
     /**
@@ -277,6 +296,26 @@ public class TimeTest {
         expResult = 1440;
         result = time.difference(time2);
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of equals method, of class Time.
+     */
+    @Test
+    public void testEquals() {
+        System.out.println("equals");
+        Object other = null;
+        Time instance = null;
+        boolean expResult = false;
+        boolean result = instance.equals(other);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+        
+        // Test other = null
+        
+        // Test other = this
+        
     }
     
 }
