@@ -132,4 +132,19 @@ public class Time implements ITime {
         Time t = (Time) time;
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
     }
+    
+    
+    @Override
+    public boolean equals(Object other){
+        Time otherTime = (Time)other;
+        
+        if (! this.getClass().equals( other.getClass())) return false;
+        if (this.getYear() != otherTime.getYear()) return false;
+        if (this.getMonth() != otherTime.getMonth()) return false;
+        if (this.getDay() != otherTime.getDay()) return false;
+        if (this.getHours() != otherTime.getHours()) return false;
+        if (this.getMinutes()!= otherTime.getMinutes()) return false;
+        
+        else return true;
+    }
 }
