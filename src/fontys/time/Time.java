@@ -136,6 +136,10 @@ public class Time implements ITime {
     
     @Override
     public boolean equals(Object other){
+        if (other == null) {
+            return false;
+        }
+        
         Time otherTime = (Time)other;
         
         if (! this.getClass().equals( other.getClass())) return false;

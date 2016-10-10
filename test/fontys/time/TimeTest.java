@@ -46,22 +46,31 @@ public class TimeTest {
     @Test
     public void testConstructtor(){
         // Test year == 1900
+        time = new Time(1900, 2, 4, 12, 30);
         
         // Test year == 2100
+        time = new Time(2100, 2, 4, 12, 30);
         
         // Test month == 1
+        time = new Time(2016, 1, 4, 12, 30);
         
         // Test month == 12
+        time = new Time(2016, 12, 4, 12, 30);
         
         // Test day == 1
+        time = new Time(2016, 2, 1, 12, 30);
         
         // Test hour == 0
+        time = new Time(2016, 2, 4, 0, 30);
         
         // Test hour == 23
+        time = new Time(2016, 2, 4, 23, 30);
         
         // Test minute == 0
+        time = new Time(2016, 2, 4, 12, 0);
         
         // Test minute == 59
+        time = new Time(2016, 2, 4, 12, 59);
         
     }
     
@@ -251,13 +260,10 @@ public class TimeTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        ITime t = null;
-        Time instance = null;
+        ITime t = new Time(2016, 2, 4, 12, 30);
         int expResult = 0;
-        int result = instance.compareTo(t);
+        int result = time.compareTo(t);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -304,18 +310,23 @@ public class TimeTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object other = null;
-        Time instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(other);
+        Object other = new Time(2016, 2, 4, 12, 30);
+        boolean expResult = true;
+        boolean result = time.equals(other);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
         
         // Test other = null
+        other = null;
+        expResult = false;
+        result = time.equals(other);
+        assertEquals(expResult, result);
+        
         
         // Test other = this
-        
+        other = time;
+        expResult = true;
+        result = time.equals(other);
+        assertEquals(expResult, result);
     }
     
 }
