@@ -49,7 +49,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         Time ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         // BT moet gelijk zijn aan de teruggegeven begintijd
         ITime expResult = BT;
@@ -70,7 +70,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         Time ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         // BT moet gelijk zijn aan de teruggegeven eindtijd
         ITime expResult = ET;
@@ -91,7 +91,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         Time ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         int expResult = 16;
         int result = instance.length();
@@ -110,7 +110,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         ITime ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         ITime beginTime = new Time(2016,10,4,20,10);
         ITime beginTime2 = new Time(2016,10,4,20,10);
@@ -143,7 +143,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         ITime ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         ITime endTime = new Time(2016,10,4,21,30);
         ITime endTime2 = new Time(2016,10,4,21,30);
@@ -176,7 +176,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         ITime ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         int minutes = 10;
         // Nieuwe begin/eindtijd maken om deze te vergelijken
@@ -201,7 +201,7 @@ public class TimeSpanTest {
         // Eind tijd aanmakens
         ITime ET = new Time(2016, 10, 4, 20, 30);
         // Nieuwe instance maken
-        TimeSpan instance = new TimeSpan(BT, ET);
+        ITimeSpan instance = new TimeSpan(BT, ET);
         
         // De lengte 10 minuten vergrooten dus de eindtijd verzetten
         int minutes = 10;
@@ -229,13 +229,60 @@ public class TimeSpanTest {
     @Test
     public void testIsPartOf() {
         System.out.println("isPartOf");
-        ITimeSpan timeSpan = null;
-        TimeSpan instance = null;
-        boolean expResult = false;
-        boolean result = instance.isPartOf(timeSpan);
+        // Begin time aanmaken
+        ITime BT = new Time(2016, 10, 9, 20, 5);
+        // Eind tijd aanmakens
+        ITime ET = new Time(2016, 10, 9, 20, 30);
+        // Nieuwe instance maken
+        ITimeSpan instance = new TimeSpan(BT, ET);
+        
+        // Begin time aanmaken
+        ITime BT2 = new Time(2016, 10, 9, 20, 10);
+        // Eind tijd aanmakens
+        ITime ET2 = new Time(2016, 10, 9, 20, 20);
+        // Nieuwe instance maken
+        ITimeSpan instance2 = new TimeSpan(BT2, ET2);        
+        
+        // Testen op tijd binnen elkaars
+        boolean expResult = true;
+        boolean result = instance.isPartOf(instance2);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // nog een test maken
+        BT2 =  new Time(2016, 10, 9, 20, 5);
+        ET2 =  new Time(2016, 10, 9, 20, 35);
+        
+        // Nieuwe instance maken
+        instance2 = new TimeSpan(BT2, ET2);  
+        
+        // Testen als de eindtijd later is 
+        expResult = false;
+        result = instance.isPartOf(instance2);
+        assertEquals(expResult, result);
+        
+        // nog een test maken
+        BT2 =  new Time(2016, 10, 9, 20, 00);
+        ET2 =  new Time(2016, 10, 9, 20, 10);
+        
+        // Nieuwe instance maken
+        instance2 = new TimeSpan(BT2, ET2);    
+        
+//        Testen als de begintijd eerder is
+        expResult = false;
+        result = instance.isPartOf(instance2);
+        assertEquals(expResult, result);
+        
+        // nog een test maken
+        BT2 =  new Time(2016, 10, 9, 19, 00);
+        ET2 =  new Time(2016, 10, 9, 21, 10);
+        
+        // Nieuwe instance maken
+        instance2 = new TimeSpan(BT2, ET2);    
+        
+        // Testen als beide timespans erbuiten zijn
+        expResult = false;
+        result = instance.isPartOf(instance2);
+        assertEquals(expResult, result);        
     }
 
     /**
@@ -244,13 +291,55 @@ public class TimeSpanTest {
     @Test
     public void testUnionWith() {
         System.out.println("unionWith");
-        ITimeSpan timeSpan = null;
-        TimeSpan instance = null;
+        
+        // Begin end eind time aanmaken
+        Time BT = new Time(2016, 10, 9, 15, 00);
+        Time ET = new Time(2016, 10, 9, 20, 00);        
+        Time BT2 = new Time(2016, 10, 9, 21, 00);
+        Time ET2 = new Time(2016, 10, 9, 22, 00);  
+        
+        TimeSpan timeSpan = new TimeSpan(BT, ET);
+        TimeSpan instance = new TimeSpan(BT2, ET2);
+        
+        // Test zonder overlap
         ITimeSpan expResult = null;
         ITimeSpan result = instance.unionWith(timeSpan);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        //Test met 30 minuten overlap
+        BT = new Time(2016, 10, 9, 15, 00);
+        ET = new Time(2016, 10, 9, 16, 00);
+
+        BT2 = new Time(2016, 10, 9, 15, 30);
+        ET2 = new Time(2016, 10, 9, 16, 30);
+            
+        timeSpan = new TimeSpan(BT, ET);
+        instance = new TimeSpan(BT2, ET2);
+
+        result = instance.unionWith(timeSpan);
+        
+        Time BTverwacht = new Time(2016, 10, 9, 15, 00);
+        Time ETverwacht = new Time(2016, 10, 9, 16, 30);
+        assertEquals(result.getBeginTime(), BT);
+        assertEquals(result.getEndTime(), ET2);
+        
+        //Test met 30 minuten overlap andersom
+        BT = new Time(2016, 10, 9, 15, 00);
+        ET = new Time(2016, 10, 9, 16, 00);
+
+        BT2 = new Time(2016, 10, 9, 15, 30);
+        ET2 = new Time(2016, 10, 9, 16, 30);
+            
+        timeSpan = new TimeSpan(BT, ET);
+        instance = new TimeSpan(BT2, ET2);
+
+        result = timeSpan.unionWith(instance);
+        
+        BTverwacht = new Time(2016, 10, 9, 15, 00);
+        ETverwacht = new Time(2016, 10, 9, 16, 30);
+        assertEquals(result.getBeginTime(), BT);
+        assertEquals(result.getEndTime(), ET2);        
+        
     }
 
     /**

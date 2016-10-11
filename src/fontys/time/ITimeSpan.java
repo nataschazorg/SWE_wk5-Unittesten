@@ -69,10 +69,10 @@ public interface ITimeSpan {
     /**
      * 
      * @param timeSpan
-     * @return if this time span and [timeSpan] are consecutive or possess a
-     * common intersection, then the smallest time span ts will be returned, 
-     * whereby this time span and [timeSpan] are part of ts, 
-     * otherwise null will be returned 
+        * @return if this time span and [timeSpan] are consecutive or possess a
+        * common intersection, then the smallest time span ts will be returned, 
+        * whereby this time span and [timeSpan] are part of ts, 
+        * otherwise null will be returned 
      */
     ITimeSpan unionWith(ITimeSpan timeSpan);
 

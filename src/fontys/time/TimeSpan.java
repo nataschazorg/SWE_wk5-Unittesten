@@ -114,7 +114,7 @@ public class TimeSpan implements ITimeSpan {
         et = et.plus(minutes);
     }
     /*
-    * Deze methode controleert of 2 timespans elkaar overlappen
+    * Deze methode controleert of de ene timespan in de andere zit
     * @param timeSpan
     * @return boolean 
     */
@@ -125,31 +125,29 @@ public class TimeSpan implements ITimeSpan {
     }
     
     /*
-    * Deze methode 
     * @param timeSpan
     * @return timeSpan
     */
     @Override
     public ITimeSpan unionWith(ITimeSpan timeSpan) {
-        if (bt.compareTo(timeSpan.getEndTime()) > 0 || et.compareTo(timeSpan.getBeginTime()) < 0) {
+        if (bt.compareTo(timeSpan.getEndTime()) < 0 || et.compareTo(timeSpan.getBeginTime()) > 0) {
             return null;
         }
         
         ITime begintime, endtime;
-        if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
+        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
             begintime = bt;
         } else {
             begintime = timeSpan.getBeginTime();
         }
 
-        if (et.compareTo(timeSpan.getEndTime()) > 0) {
+        if (et.compareTo(timeSpan.getEndTime()) < 0) {
             endtime = et;
         } else {
             endtime = timeSpan.getEndTime();
         }
 
         return new TimeSpan(begintime, endtime);
-
     }
 
     @Override
