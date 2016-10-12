@@ -18,9 +18,6 @@ import static org.junit.Assert.*;
  */
 public class TimeSpanTest {
     
-    public TimeSpanTest() {
-    }
-    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -36,7 +33,30 @@ public class TimeSpanTest {
     @After
     public void tearDown() {
     }
-
+    
+    @Test
+    public void testConstructor() {
+        System.out.println("constructor");
+        // Begin time aanmaken
+        ITime BT = new Time(2016, 10, 4, 20, 15);
+        ITime ET = new Time(2016, 10, 4, 20, 30);
+        // Nieuwe instance maken
+        try {
+            ITimeSpan instance = new TimeSpan(BT, ET);
+        }
+        catch (IllegalArgumentException e) {
+            fail("Timespan zou toegevoegd moeten worden");
+        }
+        
+        BT = new Time(2016, 10, 4, 20, 14);
+        ET = new Time(2016, 10, 4, 15, 30);
+        try {
+            ITimeSpan instance = new TimeSpan(BT, ET);
+            fail("Timespan zou niet toegevoegd moeten worden tijd begintijd is eerder");
+        }
+        catch (IllegalArgumentException e) {
+        }
+    }
     /**
      * Test of getBeginTime method, of class TimeSpan.
      */
