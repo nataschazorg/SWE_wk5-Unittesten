@@ -135,6 +135,11 @@ public class Time implements ITime {
         return time.gc.compareTo(gc);
     }
 
+    /**
+     * 
+     * @param time
+     * @return the difference between this time and [time] expressed in minutes
+     */
     @Override
     public int difference(ITime time) {
         Time t = (Time) time;
