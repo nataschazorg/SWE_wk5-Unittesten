@@ -6,6 +6,7 @@ package fontys.time;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Objects;
 
 /**
  *
@@ -56,19 +57,24 @@ public class Time implements ITime {
     }
 
     /**
-     * @author johan
+     * @author Johan
      *
      * Use the given year and month to get the last day of the month.
      * @param y 1900≤m≤3000
      * @param m 1≤m≤12
      * @return the last day of the given month
      */
-    public int lastDayOfMonth(int y, int m) {
+    private int lastDayOfMonth(int y, int m) {
         Calendar c = Calendar.getInstance();
         c.set(y, m - 1, 1);
         return c.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
+    /**
+     * @author Johan
+     * 
+     * @return the concerning day in the week of this time
+     */
     @Override
     public DayInWeek getDayInWeek() {
         int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);
@@ -134,7 +140,22 @@ public class Time implements ITime {
         Time t = (Time) time;
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
     }
-
+    
+    /**
+     * @author Johan
+     * @param other Time object
+     * 
+     * @return 
+     *      False in case of:
+     *      - other cannot be cast into a Time object
+     *      - The year in the other object does not the year in this object
+     *      - The month in the other object does not match the month in this object
+     *      - The day in the other object does not match the day in this object
+     *      - The hour in the other object does not match the hour in this object
+     *      - The minute in the other object does not match the minute in this object
+     *      
+     *      True if all of the above attributes match
+     */
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -156,14 +177,17 @@ public class Time implements ITime {
             if (this.getHours() != otherTime.getHours()) {
                 return false;
             }
-            if (this.getMinutes() != otherTime.getMinutes()) {
-                return false;
-            } else {
-                return true;
-            }
+            return this.getMinutes() == otherTime.getMinutes();
 
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.gc);
+        return hash;
     }
 }

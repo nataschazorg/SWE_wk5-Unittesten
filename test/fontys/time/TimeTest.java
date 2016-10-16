@@ -146,17 +146,6 @@ public class TimeTest {
         }
         
     }
-    
-    /**
-     * Test of getLastDayOfMonth method, of class Time.
-     */
-    @Test
-    public void testLastDayOfMonth(){
-        System.out.println("lastDayOfMonth");
-        int expResult = 29;
-        int result = time.lastDayOfMonth(time.getYear(), time.getMonth());
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of getDayInWeek method, of class Time.
