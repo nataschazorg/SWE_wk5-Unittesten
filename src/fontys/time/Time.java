@@ -54,7 +54,9 @@ public class Time implements ITime {
         gc = (GregorianCalendar) t.gc.clone();
     }
     
-    /**
+    /** 
+     * @author johan
+     * 
      * Use the given year and month to get the last day of the month. 
      * @param y 1900≤m≤3000
      * @param m 1≤m≤12
@@ -68,8 +70,9 @@ public class Time implements ITime {
 
     @Override
     public DayInWeek getDayInWeek() {
-        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK) - 1;
-        switch (day_of_week) {
+        int day_of_week = gc.get(GregorianCalendar.DAY_OF_WEEK);
+        System.out.println(day_of_week);
+        switch (day_of_week - 1) {
             case GregorianCalendar.SUNDAY:
                 return DayInWeek.SUN;
             case GregorianCalendar.MONDAY:
@@ -82,10 +85,8 @@ public class Time implements ITime {
                 return DayInWeek.THU;
             case GregorianCalendar.FRIDAY:
                 return DayInWeek.FRI;
-            case GregorianCalendar.SATURDAY:
-                return DayInWeek.SAT;
             default:
-                return null;
+                return DayInWeek.SAT;
         }
     }
 

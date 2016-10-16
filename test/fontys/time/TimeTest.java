@@ -163,8 +163,47 @@ public class TimeTest {
     @Test
     public void testGetDayInWeek() {
         System.out.println("getDayInWeek");
-        DayInWeek expResult = DayInWeek.THU;
+                
+        // Test monday
+        time = new Time(2016, 2, 8, 12, 30);
+        DayInWeek expResult = DayInWeek.MON;
         DayInWeek result = time.getDayInWeek();
+        assertEquals(expResult, result);
+        
+        // Test tuesday
+        time = new Time(2016, 2, 9, 12, 30);
+        expResult = DayInWeek.TUE;
+        result = time.getDayInWeek();
+        assertEquals(expResult, result);
+        
+        // Test wednesday
+        time = new Time(2016, 2, 10, 12, 30);
+        expResult = DayInWeek.WED;
+        result = time.getDayInWeek();
+        assertEquals(expResult, result);
+        
+        // Test thursday
+        time = new Time(2016, 2, 11, 12, 30);
+        expResult = DayInWeek.THU;
+        result = time.getDayInWeek();
+        assertEquals(expResult, result);
+        
+        // Test friday
+        time = new Time(2016, 2, 12, 12, 30);
+        expResult = DayInWeek.FRI;
+        result = time.getDayInWeek();
+        assertEquals(expResult, result);
+        
+        // Test saturday
+        time = new Time(2016, 2, 20, 12, 30);
+        expResult = DayInWeek.SAT;
+        result = time.getDayInWeek();
+        assertEquals(expResult, result);
+        
+        // Test sunday
+        time = new Time(2016, 2, 14, 12, 30);
+        expResult = DayInWeek.SUN;
+        result = time.getDayInWeek();
         assertEquals(expResult, result);
     }
 
