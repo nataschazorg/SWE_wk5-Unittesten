@@ -45,7 +45,7 @@ public class TimeTest {
      * should not raise an exception
      */
     @Test
-    public void testConstructtor(){
+    public void testConstructor(){
         // Test year == 1900
         time = new Time(1900, 2, 4, 12, 30);
         

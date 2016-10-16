@@ -109,8 +109,12 @@ public class TimeSpan2 implements ITimeSpan {
      */
     @Override
     public void changeLengthWith(int minutes) {
-        et.plus(minutes);
-        if (et.compareTo(bt) < 0) {
+        if (minutes < 0) {
+            throw new IllegalArgumentException("Minutes must have a positive value");
+        }
+        
+        et = et.plus(minutes);
+        if (et.compareTo(bt) > 0) {
             throw new IllegalArgumentException("Begin time cannot be greater then the end time");
         }
     }

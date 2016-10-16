@@ -135,10 +135,15 @@ public class Time implements ITime {
 <span class="fc" id="L135">        return time.gc.compareTo(gc);</span>
     }
 
+    /**
+     * 
+     * @param time
+     * @return the difference between this time and [time] expressed in minutes
+     */
     @Override
     public int difference(ITime time) {
-<span class="fc" id="L140">        Time t = (Time) time;</span>
-<span class="fc" id="L141">        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);</span>
+<span class="fc" id="L145">        Time t = (Time) time;</span>
+<span class="fc" id="L146">        return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);</span>
     }
     
     /**
@@ -158,37 +163,37 @@ public class Time implements ITime {
      */
     @Override
     public boolean equals(Object other) {
-<span class="fc bfc" id="L161" title="All 2 branches covered.">        if (other == null) {</span>
-<span class="fc" id="L162">            return false;</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">        if (other == null) {</span>
+<span class="fc" id="L167">            return false;</span>
         }
 
         try {
-<span class="fc" id="L166">            Time otherTime = (Time) other;</span>
+<span class="fc" id="L171">            Time otherTime = (Time) other;</span>
             
-<span class="fc bfc" id="L168" title="All 2 branches covered.">            if (this.getYear() != otherTime.getYear()) {</span>
-<span class="fc" id="L169">                return false;</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">            if (this.getYear() != otherTime.getYear()) {</span>
+<span class="fc" id="L174">                return false;</span>
             }
-<span class="fc bfc" id="L171" title="All 2 branches covered.">            if (this.getMonth() != otherTime.getMonth()) {</span>
-<span class="fc" id="L172">                return false;</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">            if (this.getMonth() != otherTime.getMonth()) {</span>
+<span class="fc" id="L177">                return false;</span>
             }
-<span class="fc bfc" id="L174" title="All 2 branches covered.">            if (this.getDay() != otherTime.getDay()) {</span>
-<span class="fc" id="L175">                return false;</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">            if (this.getDay() != otherTime.getDay()) {</span>
+<span class="fc" id="L180">                return false;</span>
             }
-<span class="fc bfc" id="L177" title="All 2 branches covered.">            if (this.getHours() != otherTime.getHours()) {</span>
-<span class="fc" id="L178">                return false;</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">            if (this.getHours() != otherTime.getHours()) {</span>
+<span class="fc" id="L183">                return false;</span>
             }
-<span class="fc bfc" id="L180" title="All 2 branches covered.">            return this.getMinutes() == otherTime.getMinutes();</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">            return this.getMinutes() == otherTime.getMinutes();</span>
 
-<span class="fc" id="L182">        } catch (Exception e) {</span>
-<span class="fc" id="L183">            return false;</span>
+<span class="fc" id="L187">        } catch (Exception e) {</span>
+<span class="fc" id="L188">            return false;</span>
         }
     }
 
     @Override
     public int hashCode() {
-<span class="fc" id="L189">        int hash = 5;</span>
-<span class="fc" id="L190">        hash = 79 * hash + Objects.hashCode(this.gc);</span>
-<span class="fc" id="L191">        return hash;</span>
+<span class="fc" id="L194">        int hash = 5;</span>
+<span class="fc" id="L195">        hash = 79 * hash + Objects.hashCode(this.gc);</span>
+<span class="fc" id="L196">        return hash;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
