@@ -267,9 +267,8 @@ public class TimeSpan2Test {
         ITimeSpan instance2 = new TimeSpan2(BT2, ET2);        
         
         // Testen op tijd binnen elkaars
-        boolean expResult = true;
         boolean result = instance.isPartOf(instance2);
-        assertEquals(expResult, result);
+        assertFalse(result);
         
         // nog een test maken
         BT2 =  new Time(2016, 10, 9, 20, 5);
@@ -278,10 +277,9 @@ public class TimeSpan2Test {
         // Nieuwe instance maken
         instance2 = new TimeSpan2(BT2, ET2);  
         
-        // Testen als de eindtijd later is 
-        expResult = false;
+        // Testen als de eindtijd later is
         result = instance.isPartOf(instance2);
-        assertEquals(expResult, result);
+        assertTrue(result);
         
         // nog een test maken
         BT2 =  new Time(2016, 10, 9, 20, 00);
@@ -291,9 +289,8 @@ public class TimeSpan2Test {
         instance2 = new TimeSpan2(BT2, ET2);    
         
 //        Testen als de begintijd eerder is
-        expResult = false;
         result = instance.isPartOf(instance2);
-        assertEquals(expResult, result);
+        assertFalse(result);
         
         // nog een test maken
         BT2 =  new Time(2016, 10, 9, 19, 00);
@@ -303,9 +300,8 @@ public class TimeSpan2Test {
         instance2 = new TimeSpan2(BT2, ET2);    
         
         // Testen als beide timespans erbuiten zijn
-        expResult = false;
         result = instance.isPartOf(instance2);
-        assertEquals(expResult, result);        
+        assertTrue(result);        
     }
 
     /**
