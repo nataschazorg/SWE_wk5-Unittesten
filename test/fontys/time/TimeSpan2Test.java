@@ -325,9 +325,8 @@ public class TimeSpan2Test {
         TimeSpan2 instance = new TimeSpan2(BT2, ET2);
         
         // Test zonder overlap
-        ITimeSpan expResult = null;
         ITimeSpan result = instance.unionWith(timeSpan);
-        assertEquals(expResult, result);
+        assertNull(result);
         
         //Test met 30 minuten overlap
         BT = new Time(2016, 10, 9, 15, 00);

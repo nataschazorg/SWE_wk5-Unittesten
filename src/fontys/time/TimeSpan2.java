@@ -131,7 +131,31 @@ public class TimeSpan2 implements ITimeSpan{
      */
     @Override
     public ITimeSpan unionWith(ITimeSpan timeSpan) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ITime beginTime, endTime;
+        
+        System.out.println(bt.compareTo(timeSpan.getEndTime()));
+        System.out.println(timeSpan.getBeginTime().compareTo(et));
+        
+        if (bt.compareTo(timeSpan.getEndTime()) < 0 || 
+                timeSpan.getBeginTime().compareTo(et) < 0) {
+            return null;
+        }
+        
+        if (bt.compareTo(timeSpan.getBeginTime()) > 0) {
+            beginTime = bt;
+        }
+        else {
+            beginTime = timeSpan.getBeginTime();
+        }
+        
+        if (et.compareTo(timeSpan.getEndTime()) < 0) {
+            endTime = et;
+        }
+        else {
+            endTime = timeSpan.getEndTime();
+        }
+        
+        return new TimeSpan2(beginTime, endTime);
     }
     
     /**
