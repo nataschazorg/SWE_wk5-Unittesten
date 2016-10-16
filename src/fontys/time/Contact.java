@@ -10,36 +10,44 @@ import java.util.Iterator;
 
 /**
  *
- * @author floris
+ * @author johan
  */
 public class Contact {
+
     private final String name;
     private ArrayList<Appointment> agenda;
-    
+
     /**
      * Constructor
-     * @param name String mag niet leeg zijn
+     *
+     * A new contact is created with the name of the contact. The new contact
+     * will be added to the agenda ArrayList.
+     *
+     * @param name cannot be empty
      */
     public Contact(String name) {
-        if(name == null || name.isEmpty()){
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Naam is verplicht");
         }
-        
+
         this.name = name.trim();
         agenda = new ArrayList();
     }
-    
+
     /**
-     * Geeft de naam van de contact terug
-     * @return name string
+     *
+     * @return name The name of the contact
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Verwijderd een appointment uit de agenda
-     * @param a as Appointment
+     * Removes an appointment from the agenda.
+     *
+     * @param a as Appointment cannot be null and must exist in the agenda
+     * ArrayList. If the appointment does not exist in the agenda ArrayList an
+     * exception will be thrown.
      */
     public void removeAppointment(Appointment a) {
         if (a != null) {
@@ -49,39 +57,36 @@ public class Contact {
             }
         }
     }
+
     /**
-     * Voegt een appointment toe aan de agenda. Adds an appointment to the Agenda. Appointment can't be null and can't
-     * @param a Appointment mag niet NULL of leeg zijn. Mag ook niet overlappen met andere appointments
-     * @return true als Appointment is toegevoegd anders false bij fout
+     * Adds an appointment to the agenda ArrayList. An appointment cannot
+     * overlap with other appointments in the agenda ArrayList. The appointments
+     * can be directly adjacent to each other
+     *
+     * @param a appointment. This cannot be null.
+     * @return true if the appointment is added to the agenda ArrayList, false
+     * if the appointment was not added to the agenda ArrayList.
      */
     public boolean addAppointment(Appointment a) {
         boolean toegevoegd = false;
-        if(a!= null)
-        {
+        if (a != null) {
             // Als de agenda nog leeg is is het altijd goed
-            if(!this.agenda.isEmpty())
-            {
-                for(Appointment app : this.agenda)
-                {
-                    if(app.unionWith(a) != null)
-                    {
-                        if(!agenda.contains(a))
-                        {
+            if (!this.agenda.isEmpty()) {
+                for (Appointment app : this.agenda) {
+                    if (app.unionWith(a) != null) {
+                        if (!agenda.contains(a)) {
                             toegevoegd = true;
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 toegevoegd = true;
             }
-            
+
             // Niet direct toevoegen maar als toegevoegd true is uiteindelijk dan toevoegen
-            if(toegevoegd == true)
-            {
-                 agenda.add(a);
-                 a.addContact(this);
+            if (toegevoegd == true) {
+                agenda.add(a);
+                a.addContact(this);
             }
         }
         return toegevoegd;
@@ -94,5 +99,5 @@ public class Contact {
      */
     public Iterator<Appointment> appointments() {
         return agenda.iterator();
-    }    
+    }
 }
