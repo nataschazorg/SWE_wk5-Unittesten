@@ -119,7 +119,7 @@ public class Appointment implements ITimeSpan {
 
     @Override
     public int length() {
-<span class="nc" id="L122">        return this.timeSpan.length();</span>
+<span class="fc" id="L122">        return this.timeSpan.length();</span>
     }
 
     @Override
@@ -129,22 +129,22 @@ public class Appointment implements ITimeSpan {
 
     @Override
     public void setEndTime(ITime endTime) {
-<span class="nc" id="L132">        this.timeSpan.setEndTime(endTime);</span>
-<span class="nc" id="L133">    }</span>
+<span class="fc" id="L132">        this.timeSpan.setEndTime(endTime);</span>
+<span class="fc" id="L133">    }</span>
 
     @Override
     public void move(int minutes) {
-<span class="nc" id="L137">        this.timeSpan.move(minutes);</span>
-<span class="nc" id="L138">    }</span>
+<span class="fc" id="L137">        this.timeSpan.move(minutes);</span>
+<span class="fc" id="L138">    }</span>
 
     @Override
     public void changeLengthWith(int minutes) {
-<span class="nc" id="L142">        this.timeSpan.changeLengthWith(minutes);</span>
-<span class="nc" id="L143">    }</span>
+<span class="fc" id="L142">        this.timeSpan.changeLengthWith(minutes);</span>
+<span class="fc" id="L143">    }</span>
 
     @Override
     public boolean isPartOf(ITimeSpan timeSpan) {
-<span class="nc" id="L147">        return this.timeSpan.isPartOf(timeSpan);</span>
+<span class="fc" id="L147">        return this.timeSpan.isPartOf(timeSpan);</span>
     }
 
     @Override
@@ -154,7 +154,7 @@ public class Appointment implements ITimeSpan {
 
     @Override
     public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
-<span class="nc" id="L157">        return this.timeSpan.intersectionWith(timeSpan);</span>
+<span class="fc" id="L157">        return this.timeSpan.intersectionWith(timeSpan);</span>
     }    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
