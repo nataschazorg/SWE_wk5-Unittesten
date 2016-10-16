@@ -5,6 +5,7 @@
  */
 package fontys.time;
 
+import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -350,22 +351,44 @@ public class TimeTest {
     public void testEquals() {
         System.out.println("equals");
         Object other = new Time(2016, 2, 4, 12, 30);
-        boolean expResult = true;
         boolean result = time.equals(other);
-        assertEquals(expResult, result);
+        assertTrue(result);
         
         // Test other = null
         other = null;
-        expResult = false;
         result = time.equals(other);
-        assertEquals(expResult, result);
+        assertFalse(result);
         
         
         // Test other = this
         other = time;
-        expResult = true;
         result = time.equals(other);
-        assertEquals(expResult, result);
+        assertTrue(result);
+        
+        // Test other class
+        other = new GregorianCalendar();
+        result = time.equals(other);
+        assertFalse(result);
+        
+        // Test different year
+        other = new Time(2015, 2, 4, 12, 30);
+        assertFalse(time.equals(other));
+        
+        // Test different month
+        other = new Time(2016, 3, 4, 12, 30);
+        assertFalse(time.equals(other));
+        
+        // Test different day
+        other = new Time(2016, 2, 5, 12, 30);
+        assertFalse(time.equals(other));
+        
+        // Test different hour
+        other = new Time(2016, 2, 4, 11, 30);
+        assertFalse(time.equals(other));
+        
+        // Test different minute
+        other = new Time(2016, 2, 4, 12, 20);
+        assertFalse(time.equals(other));
     }
     
 }

@@ -10,9 +10,9 @@ import java.util.GregorianCalendar;
 /**
  *
  * @author Frank Peeters, Nico Kuijpers
- * 
+ *
  * LET OP: De klasse Time bevat enkele fouten.
- * 
+ *
  */
 public class Time implements ITime {
 
@@ -20,8 +20,9 @@ public class Time implements ITime {
 
     /**
      * creation of a time-object with year y, month m, day d, hours h and
-     * minutes m; if the combination of y-m-d refers to a non-existing date 
-     * the value of this Time-object will be not guaranteed 
+     * minutes m; if the combination of y-m-d refers to a non-existing date the
+     * value of this Time-object will be not guaranteed
+     *
      * @param y 1900≤m≤2100
      * @param m 1≤m≤12
      * @param d 1≤d≤31
@@ -29,13 +30,13 @@ public class Time implements ITime {
      * @param min 0≤m≤59
      */
     public Time(int y, int m, int d, int h, int min) {
-        if (y < 1900 || y > 2100){
+        if (y < 1900 || y > 2100) {
             throw new IllegalArgumentException("Year must be within 1900..3000");
         }
         if (m < 1 || m > 12) {
             throw new IllegalArgumentException("month must be within 1..12");
-        }       
-        
+        }
+
         if (d < 1 || d > lastDayOfMonth(y, m)) {
             // TODO Check what month it is and assert on the maximum days in the month
             throw new IllegalArgumentException("day must be within 1..31");
@@ -46,23 +47,23 @@ public class Time implements ITime {
         if (min < 0 || min > 59) {
             throw new IllegalArgumentException("minutes must be within 0..59");
         }
-        
-        gc = new GregorianCalendar(y, m , d, h, min);
+
+        gc = new GregorianCalendar(y, m, d, h, min);
     }
 
     Time(Time t) {
         gc = (GregorianCalendar) t.gc.clone();
     }
-    
-    /** 
+
+    /**
      * @author johan
-     * 
-     * Use the given year and month to get the last day of the month. 
+     *
+     * Use the given year and month to get the last day of the month.
      * @param y 1900≤m≤3000
      * @param m 1≤m≤12
      * @return the last day of the given month
      */
-    public int lastDayOfMonth(int y, int m){
+    public int lastDayOfMonth(int y, int m) {
         Calendar c = Calendar.getInstance();
         c.set(y, m - 1, 1);
         return c.getActualMaximum(Calendar.DAY_OF_MONTH);
@@ -133,23 +134,36 @@ public class Time implements ITime {
         Time t = (Time) time;
         return (int) ((this.gc.getTimeInMillis() - t.gc.getTimeInMillis()) / 60000);
     }
-    
-    
+
     @Override
-    public boolean equals(Object other){
+    public boolean equals(Object other) {
         if (other == null) {
             return false;
         }
-        
-        Time otherTime = (Time)other;
-        
-        if (! this.getClass().equals( other.getClass())) return false;
-        if (this.getYear() != otherTime.getYear()) return false;
-        if (this.getMonth() != otherTime.getMonth()) return false;
-        if (this.getDay() != otherTime.getDay()) return false;
-        if (this.getHours() != otherTime.getHours()) return false;
-        if (this.getMinutes()!= otherTime.getMinutes()) return false;
-        
-        else return true;
+
+        try {
+            Time otherTime = (Time) other;
+            
+            if (this.getYear() != otherTime.getYear()) {
+                return false;
+            }
+            if (this.getMonth() != otherTime.getMonth()) {
+                return false;
+            }
+            if (this.getDay() != otherTime.getDay()) {
+                return false;
+            }
+            if (this.getHours() != otherTime.getHours()) {
+                return false;
+            }
+            if (this.getMinutes() != otherTime.getMinutes()) {
+                return false;
+            } else {
+                return true;
+            }
+
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

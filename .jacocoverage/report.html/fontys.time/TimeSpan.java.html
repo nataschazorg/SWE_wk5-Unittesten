@@ -27,8 +27,8 @@ public class TimeSpan implements ITimeSpan {
      * @param et 
      */
 <span class="fc" id="L29">    public TimeSpan(ITime bt, ITime et) {</span>
-<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (bt.compareTo(et) &lt;= 0) {</span>
-<span class="nc" id="L31">            throw new IllegalArgumentException(&quot;begin time &quot;</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (bt.compareTo(et) &lt;= 0) {</span>
+<span class="fc" id="L31">            throw new IllegalArgumentException(&quot;begin time &quot;</span>
                     + bt + &quot; must be earlier than end time &quot; + et);
         }
 
@@ -154,23 +154,23 @@ public class TimeSpan implements ITimeSpan {
     public ITimeSpan intersectionWith(ITimeSpan timeSpan) {
 
         ITime begintime, endtime;
-<span class="nc bnc" id="L157" title="All 2 branches missed.">        if (bt.compareTo(timeSpan.getBeginTime()) &gt; 0) {</span>
-<span class="nc" id="L158">            begintime = bt;</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">        if (bt.compareTo(timeSpan.getBeginTime()) &lt; 0) {</span>
+<span class="fc" id="L158">            begintime = bt;</span>
         } else {
-<span class="nc" id="L160">            begintime = timeSpan.getBeginTime();</span>
+<span class="fc" id="L160">            begintime = timeSpan.getBeginTime();</span>
         }
 
-<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (et.compareTo(timeSpan.getEndTime()) &lt; 0) {</span>
-<span class="nc" id="L164">            endtime = et;</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">        if (et.compareTo(timeSpan.getEndTime()) &gt; 0) {</span>
+<span class="fc" id="L164">            endtime = et;</span>
         } else {
-<span class="nc" id="L166">            endtime = timeSpan.getEndTime();</span>
+<span class="fc" id="L166">            endtime = timeSpan.getEndTime();</span>
         }
 
-<span class="nc bnc" id="L169" title="All 2 branches missed.">        if (begintime.compareTo(endtime) &gt;= 0) {</span>
-<span class="nc" id="L170">            return null;</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        if (begintime.compareTo(endtime) &lt;= 0) {</span>
+<span class="fc" id="L170">            return null;</span>
         }
 
-<span class="nc" id="L173">        return new TimeSpan(begintime, endtime);</span>
+<span class="fc" id="L173">        return new TimeSpan(begintime, endtime);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
